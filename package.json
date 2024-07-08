@@ -1,0 +1,28 @@
+{
+  "name": "test_socket_ts",
+  "version": "1.0.0",
+  "description": "test d'un systeme de chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "start_test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/driss-khelfi/test_socket_ts.git"
+  },
+  "keywords": [
+    "socket",
+    "test",
+    "ts"
+  ],
+  "author": "Driss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/driss-khelfi/test_socket_ts/issues"
+  },
+  "homepage": "https://github.com/driss-khelfi/test_socket_ts#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}
