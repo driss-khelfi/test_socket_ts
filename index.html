@@ -8,33 +8,76 @@
         #messages
         {
             border: 1px solid black;
-            height: 90%;
+            height: 90vh;
         }
         #messages p
         {
             margin: 0;
             padding: 10px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
         }
         #messages :nth-child(odd)
         {
-            background-color: grey;
+            background-color: #aaa;
+        }
+        form
+        {
+            display: flex;
+        }
+        #name
+        {
+            flex:1;
+            padding: 10px;
+        }
+        #message
+        {
+            flex: 5;
+        }
+        button
+        {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background-color: turquoise;
+            color: white;
         }
     </style>
 </head>
 <body>
    <div id="messages"></div>
-    <p>Ligne 1</p>
-    <p>Ligne 2</p>
-    <p>Ligne 3</p>
-    <p>Ligne 4</p>
-    <p>Ligne 5</p>
+       
     
-
   <form>
-   <input type="text" id="name" placeholder="Entrez votre nom ">
-   <input type="text" id="message" placeholder="Entrez votre message">
-   <button>Envoyer</button>
+    <input type="text" id="name" placeholder="Entrez votre nom ">
+    <input type="text" id="message" placeholder="Entrez votre message">
+    <button>Envoyer</button>
   </form>
+  <!-- recuperation de socket.io.js -->
+   <script src="/socket.io/socket.io.js"></script>
+
+  
+  <script>
+    //connexion au serveur socket
+    const socket = io();
+    window.onload = () => {
+        //ecouteur d'evenements submit
+        document.querySelector("form").addEventListener("submit",(e)=>
+    {
+        //empecher l'envoi du formulaire
+        e.preventDefault();
+        
+        const name = document.querySelector("#name");
+        const message = document.querySelector("#message");
+        //envoi du message
+        socket.emit("chat_message", {name: name.value, message: message.value})
+        
+    });
+    //ecoute de l'evenement chat_message 
+    socket.on("chat_message",(msg) => {
+        console.log(msg);
+    })
+    }
+  </script>
 </body>
 </html>
