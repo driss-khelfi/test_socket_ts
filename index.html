@@ -70,12 +70,13 @@
         const name = document.querySelector("#name");
         const message = document.querySelector("#message");
         //envoi du message
-        socket.emit("chat_message", {name: name.value, message: message.value})
+        socket.emit("chat_message", {name: name.value, message: message.value});
         
     });
     //ecoute de l'evenement chat_message 
-    socket.on("chat_message",(msg) => {
-        console.log(msg);
+    socket.on("received_message",(msg) => {
+        document.querySelector("#messages").innerHTML += `<p>${msg.name} dit ${msg.message}</p>`;
+        document.querySelector("#message").value = "";
     })
     }
   </script>
